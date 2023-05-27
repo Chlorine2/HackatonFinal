@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Notifications
+import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -152,12 +155,18 @@ val bottomNavItems = listOf(
     BottomNavItem(
         name = "Statistic",
         route = ListOfScreens.Statistic.name,
-        icon = Icons.Rounded.AddCircle,
+        icon = Icons.Filled.CheckCircle,
+    ),
+    BottomNavItem(
+        name = "Future events",
+        route = ListOfScreens.Notifications.name,
+        icon = Icons.Rounded.Notifications,
     ),
     BottomNavItem(
         name = "Profile",
         route = ListOfScreens.Profile.name,
-        icon = Icons.Rounded.Settings,
+        icon = Icons.Rounded.Person,
     ),
+
 )
 

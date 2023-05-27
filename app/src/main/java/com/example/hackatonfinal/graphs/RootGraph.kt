@@ -17,7 +17,8 @@ enum class ListOfScreens(){
     Reset(),
     SearchProject(),
     Statistic(),
-    Profile()
+    Profile(),
+    Notifications(),
 
 
 

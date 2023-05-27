@@ -143,21 +143,8 @@ fun LoginPage(
 
                 Spacer(modifier = Modifier.padding(20.dp))
 
-                Text(
-                    text = "Or sign in with",
-                    letterSpacing = 1.sp,
-                    style = MaterialTheme.typography.bodySmall
-                )
 
-                Spacer(modifier = Modifier.padding(10.dp))
 
-                GoogleSignInButton(
-                    onClick = {
-                        // Handle Google sign-in button click
-                    }
-                )
-
-                Spacer(modifier = Modifier.padding(20.dp))
 
             }
         }
@@ -180,7 +167,7 @@ fun SimpleOutlinedTextFieldSample() {
         onValueChange = { text = it },
         shape = RoundedCornerShape(100),
         label = {
-            Text("Name or Email Address",
+            Text("Email Address",
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.bodySmall,
             ) },
@@ -249,28 +236,3 @@ fun SimpleOutlinedPasswordTextField() {
     )
 }
 
-@Composable
-fun GoogleSignInButton(onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        shape = RoundedCornerShape(100),
-        colors = ButtonDefaults.buttonColors()
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription = "Google Icon",
-                modifier = Modifier.size(24.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = "Sign in with Google",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        }
-    }
-}
