@@ -33,8 +33,8 @@ fun EventItemCard(event: Event) {
             .fillMaxWidth()
             .padding(16.dp)
             .clip(RoundedCornerShape(8.dp))
-            .shadow(16.dp),
-        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.85f),
+            .shadow(18.dp),
+        color = Color.LightGray,
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Image(
