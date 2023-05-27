@@ -10,6 +10,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import com.example.hackatonfinal.LargeDropdownMenu.LargeDropdownMenu
 import com.example.hackatonfinal.LargeDropdownMenu.LargeDropdownMenuItem
+import com.example.hackatonfinal.R
 
 @Composable
 fun SearchScreen(){
@@ -24,6 +25,17 @@ fun SearchScreen(){
         //    selectedIndex = selectedIndex,
         //    onItemSelected = { index, _ -> selectedIndex = index},
         //)
+
+        val event = Event(
+            photoResId = R.drawable.img,
+            title = "Назва події",
+            date = "27 травня 2023",
+            time = "19:00 - 22:00",
+            location = "Місце проведення",
+            description = "Tra tra das"
+        )
+
+        EventItemCard(event = event)
 
 
 
