@@ -9,6 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.hackatonfinal.R
 import com.example.hackatonfinal.Screens.Event
+import com.example.hackatonfinal.Screens.ProfileScreen.AwardsScreen
+import com.example.hackatonfinal.Screens.ProfileScreen.CompaniesScreen
 import com.example.hackatonfinal.Screens.ProfileScreen.HistoryCard
 import com.example.hackatonfinal.Screens.ProfileScreen.MyScreen
 import com.example.hackatonfinal.Screens.SearchScreen
@@ -29,10 +31,18 @@ fun HomeNavGraph(navController: NavHostController) {
             Text(text = "Hello")
         }
         composable(ListOfScreens.Profile.name){
-            MyScreen()
+            MyScreen(navController)
         }
         composable(ListOfScreens.Notifications.name){
             Text(text = "Hello")
+        }
+
+        composable(ListOfScreens.Companies.name){
+            CompaniesScreen(navController)
+        }
+
+        composable(ListOfScreens.Awards.name){
+            AwardsScreen(navController)
         }
 
 

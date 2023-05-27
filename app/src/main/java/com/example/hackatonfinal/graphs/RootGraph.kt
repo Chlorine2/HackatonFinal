@@ -19,6 +19,8 @@ enum class ListOfScreens(){
     Statistic(),
     Profile(),
     Notifications(),
+    Companies(),
+    Awards()
 
 
 

@@ -115,7 +115,7 @@ fun LoginPage(
                     onClick = {
 
                         onClickLogin()
-                    }, Modifier.width(250.dp)
+                    }, Modifier.width(280.dp).height(40.dp)
                 ){
                     Text(text = "Login",
                         style = MaterialTheme.typography.bodyLarge,
@@ -232,5 +232,11 @@ fun SimpleOutlinedPasswordTextField() {
             }
         )
     )
+}
+
+
+@Composable
+fun RewardButton(){
+
 }
 
