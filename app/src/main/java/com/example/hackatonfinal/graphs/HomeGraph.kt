@@ -2,6 +2,7 @@ package com.example.hackatonfinal.graphs
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -16,6 +17,15 @@ fun HomeNavGraph(navController: NavHostController) {
         route = Graph.HOME,
         startDestination = ListOfScreens.SearchProject.name
     ){
+        composable(ListOfScreens.SearchProject.name){
+            Text(text = "Hello")
+        }
+        composable(ListOfScreens.Statistic.name){
+            Text(text = "Hello")
+        }
+        composable(ListOfScreens.Profile.name){
+            Text(text = "Hello")
+        }
 
 
 

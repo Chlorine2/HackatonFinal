@@ -9,16 +9,14 @@ import com.example.hackatonfinal.Screens.LoginPage
 import com.example.hackatonfinal.navigateSingleTopTo
 import com.example.hackatonfinal.viewModel.SharedViewModel
 
-fun NavGraphBuilder.authNavGraph(navController: NavHostController, viewModel: SharedViewModel) {
+fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     navigation(
         route = Graph.AUTHENTICATION,
         startDestination = ListOfScreens.Login.name
     ) {
 
         composable(ListOfScreens.Login.name){
-            LoginPage(onClickLogin = {navController.navigateSingleTopTo(Graph.HOME)},
-                    onClickRegistration = {navController.navigateSingleTopTo(ListOfScreens.Registration.name)},
-                onClickReset = {navController.navigateSingleTopTo(ListOfScreens.Reset.name)}
+            LoginPage(onClickLogin = {navController.navigate(Graph.HOME)},
             )
         }
         composable(ListOfScreens.Registration.name)
