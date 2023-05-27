@@ -31,6 +31,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -55,7 +56,7 @@ import com.example.hackatonfinal.viewModel.SharedViewModel
 @Composable
 fun LoginPage(
               onClickRegistration: () -> Unit = {}, onClickReset: () -> Unit = {},
-              onClickLogin: () -> Unit = {},
+              onClickLogin: () -> Unit = {}, viewModel: SharedViewModel
 ){
 
     Box(
@@ -100,10 +101,10 @@ fun LoginPage(
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
-                SimpleOutlinedTextFieldSample()
+                SimpleOutlinedTextFieldSample(viewModel)
 
                 Spacer(modifier = Modifier.padding(3.dp))
-                SimpleOutlinedPasswordTextField()
+                SimpleOutlinedPasswordTextField(viewModel = viewModel)
 
 
 
@@ -111,8 +112,10 @@ fun LoginPage(
 
                 Button(
                     onClick = {
+                        if(viewModel.LogIn()) {
+                            onClickLogin()
+                        }
 
-                        onClickLogin()
                     }
                 ){
                     Text(text = "Login")
@@ -158,20 +161,19 @@ fun LoginPage(
 //email id
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun SimpleOutlinedTextFieldSample() {
+fun SimpleOutlinedTextFieldSample(viewModel: SharedViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    var text by rememberSaveable { mutableStateOf("") }
 
     OutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = viewModel.mail.collectAsState().value,
+        onValueChange = { viewModel.updateEmail(it) },
         shape = RoundedCornerShape(100),
         label = {
             Text("Email Address",
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.bodySmall,
             ) },
-        placeholder = { Text(text = "Name or Email Address") },
+        placeholder = { Text(text = "Email Address") },
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
             keyboardType = KeyboardType.Email
@@ -195,13 +197,12 @@ fun SimpleOutlinedTextFieldSample() {
 //password
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun SimpleOutlinedPasswordTextField() {
+fun SimpleOutlinedPasswordTextField(viewModel: SharedViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    var password by rememberSaveable { mutableStateOf("") }
     var passwordHidden by rememberSaveable { mutableStateOf(true) }
     OutlinedTextField(
-        value = password,
-        onValueChange = { password = it },
+        value = viewModel.password.collectAsState().value,
+        onValueChange = { viewModel.updatePassword(it) },
         shape = RoundedCornerShape(100),
         label = {
             Text("Enter Password",

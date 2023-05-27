@@ -5,6 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hackatonfinal.models.AuthorizationModel
+import com.example.hackatonfinal.models.RegistrationModel
+import com.example.hackatonfinal.network.SharedRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -21,6 +27,14 @@ class SharedViewModel : ViewModel(){
     var appUiState: AppUiState by mutableStateOf(AppUiState.Loading)
         private set
 
+    private var _mail = MutableStateFlow("")
+    val mail: StateFlow<String> = _mail.asStateFlow()
+
+    private var _pass = MutableStateFlow(false)
+    val pass: StateFlow<Boolean> = _pass.asStateFlow()
+
+    private var _password = MutableStateFlow("")
+    val password: StateFlow<String> = _password.asStateFlow()
     init {
         connectInternet()
     }
@@ -32,8 +46,7 @@ class SharedViewModel : ViewModel(){
             appUiState = try {
 
 
-
-
+                SharedRepository().postAuthorization(AuthorizationModel("nazstttikler@gmail.com", "killer23"))
 
                 AppUiState.Success
             } catch (e: IOException) {
@@ -42,6 +55,31 @@ class SharedViewModel : ViewModel(){
                 AppUiState.Error
             }
         }
+    }
+
+    fun LogIn() : Boolean{
+
+        viewModelScope.launch {
+             try {
+                _pass.value = true
+
+                SharedRepository().postAuthorization(AuthorizationModel(email = mail.value, password.value))
+
+            } catch (e: IOException) {
+                _pass.value = false
+
+            } catch (e: HttpException) {
+                _pass.value = false
+            }
+        }
+        return _pass.value
+    }
+    fun updateEmail(word : String){
+        _mail.value = word
+    }
+
+    fun updatePassword(word : String){
+        _password.value = word
     }
 
 }

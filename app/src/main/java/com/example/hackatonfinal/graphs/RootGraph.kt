@@ -27,13 +27,13 @@ enum class ListOfScreens(){
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun RootNavigationGraph(navController: NavHostController) {
+fun RootNavigationGraph(navController: NavHostController, viewModel: SharedViewModel) {
     NavHost(
         navController = navController,
         route = Graph.ROOT,
         startDestination = Graph.AUTHENTICATION
     ) {
-        authNavGraph(navController = navController)
+        authNavGraph(navController = navController, viewModel)
         composable(route = Graph.HOME) {
             Greeting()
         }

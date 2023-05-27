@@ -135,7 +135,7 @@ fun HomeScreen(
 ) {
     when (viewModel.appUiState) {
         is AppUiState.Loading -> Text(text = "loading...", fontSize = 30.sp)
-        is AppUiState.Success -> RootNavigationGraph(navController = rememberNavController())
+        is AppUiState.Success -> RootNavigationGraph(navController = rememberNavController(), viewModel)
         is AppUiState.Error -> Text(text = "Error", fontSize = 30.sp)
     }
 }
