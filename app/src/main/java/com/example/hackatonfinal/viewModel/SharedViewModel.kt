@@ -35,6 +35,13 @@ class SharedViewModel : ViewModel(){
 
     private var _password = MutableStateFlow("")
     val password: StateFlow<String> = _password.asStateFlow()
+
+    private var _firstname = MutableStateFlow("")
+    val firstname: StateFlow<String> = _firstname.asStateFlow()
+
+    private var _lastname = MutableStateFlow("")
+    val lastname: StateFlow<String> = _lastname.asStateFlow()
+
     init {
         connectInternet()
     }
@@ -61,11 +68,12 @@ class SharedViewModel : ViewModel(){
 
         viewModelScope.launch {
              try {
-                _pass.value = true
 
                 SharedRepository().postAuthorization(AuthorizationModel(email = mail.value, password.value))
+                 _pass.value = true
 
-            } catch (e: IOException) {
+
+             } catch (e: IOException) {
                 _pass.value = false
 
             } catch (e: HttpException) {
@@ -74,12 +82,35 @@ class SharedViewModel : ViewModel(){
         }
         return _pass.value
     }
+    fun SignUp() : Boolean{
+
+        viewModelScope.launch {
+            try {
+                _pass.value = true
+                SharedRepository().postRegistry(RegistrationModel(email = mail.value, password = password.value, firstname = firstname.value,
+                lastname = lastname.value))
+
+            } catch (e: IOException) {
+                _pass.value = false
+
+            }
+        }
+        return pass.value
+    }
     fun updateEmail(word : String){
         _mail.value = word
     }
 
     fun updatePassword(word : String){
         _password.value = word
+    }
+
+    fun updateFirstName(word : String){
+        _firstname.value = word
+    }
+
+    fun updateLastName(word : String){
+         _lastname.value = word
     }
 
 }

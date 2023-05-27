@@ -27,7 +27,8 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController , viewModel : 
         composable(ListOfScreens.Registration.name)
         {
             RegistrationPage(onClickReset = {navController.navigateSingleTopTo(ListOfScreens.Reset.name)},
-                onClickSignUp = {navController.navigateSingleTopTo(ListOfScreens.Login.name)})
+                onClickSignUp = {navController.navigateSingleTopTo(ListOfScreens.Login.name)},
+            viewModel = viewModel)
         }
         composable(ListOfScreens.Reset.name)
         {

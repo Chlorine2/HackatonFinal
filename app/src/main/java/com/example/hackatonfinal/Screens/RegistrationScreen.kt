@@ -38,9 +38,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.hackatonfinal.ui.theme.blue
+import com.example.hackatonfinal.viewModel.SharedViewModel
 
 @Composable
-fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit = {}) {
+fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit = {}, viewModel: SharedViewModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -109,13 +110,15 @@ fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit =
                 Button(
                     onClick = {} // Set your desired background color here
                 ){
-                    Text(text = "Registretion")
+                    Text(text = "Registration")
                 }
 
                 Spacer(modifier = Modifier.padding(10.dp))
                 TextButton(onClick =
                 {
-                    onClickSignUp()
+                    if(viewModel.SignUp()) {
+                        onClickSignUp()
+                    }
                 }) {
                     Text(
                         text = "Sign In",
