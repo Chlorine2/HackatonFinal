@@ -70,7 +70,7 @@ fun ResetPage(onClickSignUp : () -> Unit = {}) {
                     modifier = Modifier
                         .padding(top = 130.dp)
                         .fillMaxWidth(),
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.headlineLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
 
@@ -92,7 +92,6 @@ fun ResetPage(onClickSignUp : () -> Unit = {}) {
                  }*/
                 // Usage in ResetPage composable
                 ButtonReset(
-                    backgroundColor = Color(0xFF484BF1), // Set your desired background color here
                     nameButton = "Submit",
                 )
 
@@ -106,7 +105,7 @@ fun ResetPage(onClickSignUp : () -> Unit = {}) {
                     Text(
                         text = "Sign Up?",
                         letterSpacing = 1.sp,
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodyLarge
                     )
                 }
 
@@ -126,7 +125,6 @@ fun ResetPage(onClickSignUp : () -> Unit = {}) {
 
 @Composable
 private fun ButtonReset(
-    backgroundColor: Color,
     nameButton: String,
 ) {
     Button(
@@ -142,9 +140,8 @@ private fun ButtonReset(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(backgroundColor, shape = RoundedCornerShape(100))
                 .padding(horizontal = 16.dp, vertical = 8.dp),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Text(
                 text = nameButton,
@@ -170,7 +167,7 @@ fun ResetEmailID() {
             Text(
                 text = "Enter Registered Email",
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodySmall
+                style = MaterialTheme.typography.bodyLarge
             )
         },
         modifier = Modifier

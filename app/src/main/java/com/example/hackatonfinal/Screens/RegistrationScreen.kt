@@ -9,6 +9,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -36,6 +37,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.hackatonfinal.ui.theme.blue
 
 @Composable
 fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit = {}) {
@@ -63,24 +65,19 @@ fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit =
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
                 ,
 
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                //.........................Spacer
-                Spacer(modifier = Modifier.height(30.dp))
-
-                //.........................Text: title
                 Text(
                     text = "Create An Account",
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .padding(top = 130.dp)
                         .fillMaxWidth(),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = blue,
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 RegisterName()
@@ -123,7 +120,7 @@ fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit =
                     Text(
                         text = "Sign In",
                         letterSpacing = 1.sp,
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodyLarge
                     )
                 }
 
@@ -135,7 +132,7 @@ fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit =
                     Text(
                         text = "Reset Password",
                         letterSpacing = 1.sp,
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MaterialTheme.typography.bodyLarge,
                     )
                 }
                 Spacer(modifier = Modifier.padding(20.dp))
@@ -168,8 +165,8 @@ fun RegisterName() {
         shape = RoundedCornerShape(100),
         label = {
             Text("Name",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodySmall,
+                color = blue,
+                style = MaterialTheme.typography.bodyLarge,
             ) },
         placeholder = { Text(text = "Name") },
         keyboardOptions = KeyboardOptions(
@@ -177,8 +174,8 @@ fun RegisterName() {
             keyboardType = KeyboardType.Text
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.primary),
+            focusedBorderColor = blue,
+            unfocusedBorderColor = blue),
         singleLine = true,
         modifier = Modifier.fillMaxWidth(0.8f),
         keyboardActions = KeyboardActions(
@@ -205,8 +202,8 @@ fun RegisterPhone() {
         shape = RoundedCornerShape(100),
         label = {
             Text("Phone",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodySmall,
+                color = blue,
+                style = MaterialTheme.typography.bodyLarge,
             ) },
         placeholder = { Text(text = "Phone") },
         keyboardOptions = KeyboardOptions(
@@ -214,8 +211,8 @@ fun RegisterPhone() {
             keyboardType = KeyboardType.Phone
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.primary),
+            focusedBorderColor = blue,
+            unfocusedBorderColor = blue),
         singleLine = true,
         modifier = Modifier.fillMaxWidth(0.8f),
         keyboardActions = KeyboardActions(
@@ -242,8 +239,8 @@ fun RegisterEmail() {
         shape = RoundedCornerShape(100),
         label = {
             Text("Email Address",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodySmall,
+                color = blue,
+                style = MaterialTheme.typography.bodyLarge,
             ) },
         placeholder = { Text(text = "Email Address") },
         keyboardOptions = KeyboardOptions(
@@ -251,8 +248,8 @@ fun RegisterEmail() {
             keyboardType = KeyboardType.Email
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.primary),
+            focusedBorderColor = blue,
+            unfocusedBorderColor = blue),
         singleLine = true,
         modifier = Modifier.fillMaxWidth(0.8f),
         keyboardActions = KeyboardActions(
@@ -278,8 +275,8 @@ fun RegisterPassword() {
         shape = RoundedCornerShape(100),
         label = {
             Text("Enter Password",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodySmall,
+                color = blue,
+                style = MaterialTheme.typography.bodyLarge,
             ) },
         visualTransformation =
         if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
@@ -289,13 +286,13 @@ fun RegisterPassword() {
             keyboardType = KeyboardType.Password
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.primary),
+            focusedBorderColor = blue,
+            unfocusedBorderColor = blue),
         trailingIcon = {
             IconButton(onClick = { passwordHidden = !passwordHidden }) {
                 // Please provide localized description for accessibility services
                 val description = if (passwordHidden) "Show password" else "Hide password"
-                Icon(imageVector = Icons.Filled.Person, contentDescription = description)
+                Icon(imageVector = Icons.Filled.Lock, contentDescription = description)
             }
         },
         modifier = Modifier.fillMaxWidth(0.8f),
@@ -321,8 +318,8 @@ fun RegisterPasswordConfirm() {
         shape = RoundedCornerShape(100),
         label = {
             Text("Confirm Password",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodySmall,
+                color = blue,
+                style = MaterialTheme.typography.bodyLarge,
             ) },
         visualTransformation =
         if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
@@ -332,14 +329,14 @@ fun RegisterPasswordConfirm() {
             keyboardType = KeyboardType.Password
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.primary),
+            focusedBorderColor = blue,
+            unfocusedBorderColor = blue),
         trailingIcon = {
             IconButton(onClick = { passwordHidden = !passwordHidden }) {
 
                 // Please provide localized description for accessibility services
                 val description = if (passwordHidden) "Show password" else "Hide password"
-                Icon(imageVector = Icons.Filled.Person, contentDescription = description)
+                Icon(imageVector = Icons.Filled.Lock, contentDescription = description)
             }
         },
         modifier = Modifier.fillMaxWidth(0.8f),

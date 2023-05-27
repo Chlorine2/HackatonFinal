@@ -7,13 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Notifications
-import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -25,9 +23,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -38,6 +38,7 @@ import com.example.hackatonfinal.graphs.HomeNavGraph
 import com.example.hackatonfinal.graphs.ListOfScreens
 import com.example.hackatonfinal.graphs.RootNavigationGraph
 import com.example.hackatonfinal.ui.theme.HackatonFinalTheme
+import com.example.hackatonfinal.ui.theme.green40
 import com.example.hackatonfinal.viewModel.AppUiState
 import com.example.hackatonfinal.viewModel.SharedViewModel
 
@@ -60,49 +61,44 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Greeting(navController : NavHostController = rememberNavController()) {
+fun Greeting(navController: NavHostController = rememberNavController()) {
     val backStackEntry = navController.currentBackStackEntryAsState()
 
     Scaffold(
         bottomBar = {
-            androidx.compose.material3.NavigationBar(
-                containerColor = MaterialTheme.colorScheme.primary,
+            androidx.compose.material3.BottomAppBar(
+                containerColor = green40,
+                contentColor = Color.White,
+                modifier = Modifier.height(56.dp)
             ) {
-                bottomNavItems.forEach { item ->
+                bottomNavItems.forEachIndexed { index, item ->
                     val selected = item.route == backStackEntry.value?.destination?.route
 
                     NavigationBarItem(
-                        selected = selected,
+                        selected = false,
                         onClick = { navController.navigate(item.route) },
-                        label = {
-                            Text(
-                                text = item.name,
-                                fontWeight = FontWeight.SemiBold,
-                            )
-                        },
                         icon = {
                             Icon(
                                 imageVector = item.icon,
-                                contentDescription = "${item.name} Icon",
+                                contentDescription = "Icon",
+                                tint = Color.White
                             )
                         }
                     )
                 }
             }
         },
-        content = {
-                innerPadding ->
-            // Apply the padding globally to the whole BottomNavScreensController
+        content = { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
                 HomeNavGraph(navController)
             }
-
-        })
+        }
+    )
 }
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -155,18 +151,12 @@ val bottomNavItems = listOf(
     BottomNavItem(
         name = "Statistic",
         route = ListOfScreens.Statistic.name,
-        icon = Icons.Filled.CheckCircle,
-    ),
-    BottomNavItem(
-        name = "Future events",
-        route = ListOfScreens.Notifications.name,
-        icon = Icons.Rounded.Notifications,
+        icon = Icons.Rounded.AddCircle,
     ),
     BottomNavItem(
         name = "Profile",
         route = ListOfScreens.Profile.name,
-        icon = Icons.Rounded.Person,
+        icon = Icons.Rounded.Settings,
     ),
-
 )
 

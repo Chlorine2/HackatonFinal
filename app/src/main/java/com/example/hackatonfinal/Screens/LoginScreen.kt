@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -96,8 +97,8 @@ fun LoginPage(
                     modifier = Modifier
                         .padding(top = 130.dp)
                         .fillMaxWidth(),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.primary
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = blue
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -118,7 +119,9 @@ fun LoginPage(
 
                     }
                 ){
-                    Text(text = "Login")
+                    Text(text = "Login",
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
                 }
 
                 Spacer(Modifier.padding(10.dp))
@@ -130,7 +133,7 @@ fun LoginPage(
                     Text(
                         text = "Create An Account",
                         letterSpacing = 1.sp,
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodyLarge
                     )
                 }
                 TextButton(onClick =
@@ -140,14 +143,9 @@ fun LoginPage(
                     Text(
                         text = "Reset Password",
                         letterSpacing = 1.sp,
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodyLarge
                     )
                 }
-
-                Spacer(modifier = Modifier.padding(20.dp))
-
-
-
 
             }
         }
@@ -170,8 +168,8 @@ fun SimpleOutlinedTextFieldSample(viewModel: SharedViewModel) {
         shape = RoundedCornerShape(100),
         label = {
             Text("Email Address",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodySmall,
+                color = blue,
+                style = MaterialTheme.typography.bodyLarge,
             ) },
         placeholder = { Text(text = "Email Address") },
         keyboardOptions = KeyboardOptions(
@@ -179,8 +177,8 @@ fun SimpleOutlinedTextFieldSample(viewModel: SharedViewModel) {
             keyboardType = KeyboardType.Email
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.primary
+            focusedBorderColor = blue,
+            unfocusedBorderColor = blue
         ),
         singleLine = true,
         modifier = Modifier.fillMaxWidth(0.8f),
@@ -206,8 +204,8 @@ fun SimpleOutlinedPasswordTextField(viewModel: SharedViewModel) {
         shape = RoundedCornerShape(100),
         label = {
             Text("Enter Password",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodySmall,
+                color = blue,
+                style = MaterialTheme.typography.bodyLarge,
             ) },
         visualTransformation =
         if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
@@ -217,14 +215,14 @@ fun SimpleOutlinedPasswordTextField(viewModel: SharedViewModel) {
             keyboardType = KeyboardType.Password
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.primary),
+            focusedBorderColor = blue,
+            unfocusedBorderColor = blue),
         trailingIcon = {
             IconButton(onClick = { passwordHidden = !passwordHidden }) {
 
                 // Please provide localized description for accessibility services
                 val description = if (passwordHidden) "Show password" else "Hide password"
-                Icon(imageVector = Icons.Filled.Person, contentDescription = description)
+                Icon(imageVector = Icons.Filled.Lock, contentDescription = description)
             }
         },
         modifier = Modifier.fillMaxWidth(0.8f),
