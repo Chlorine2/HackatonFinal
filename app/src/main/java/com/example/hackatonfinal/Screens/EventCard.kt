@@ -1,6 +1,8 @@
 package com.example.hackatonfinal.Screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -15,71 +17,131 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.hackatonfinal.models.Project
+import com.example.hackatonfinal.ui.theme.blue
+import com.example.hackatonfinal.ui.theme.green40
+import com.example.hackatonfinal.viewModel.SharedViewModel
 
 data class Event(
     val photoResId: Int,
     val title: String,
-    val date: String,
     val time: String,
-    val location: String,
+    val category: String,
     val description: String
 )
 
 @Composable
-fun EventItemCard(event: Event) {
+fun EventItemCard(data: Project, onClick: () -> Unit, viewModel: SharedViewModel, photoResId: Int, height: Dp) {
     Surface(
+
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .shadow(18.dp),
-        color = Color.LightGray,
+            .padding(8.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .shadow(18.dp)
+            .requiredHeight(height).clickable{viewModel.updateProject(data);  onClick() },
+        color = green40
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Image(
-                painter = painterResource(event.photoResId),
+                painter = painterResource(photoResId),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp)
-                    .clip(shape = RoundedCornerShape(8.dp)),
+                    .clip(shape = RoundedCornerShape(18.dp)),
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(16.dp))
             Row {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = event.title,
+                        text = data.name,
                         style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = event.description,
+                        text = data.description,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Black
+                        color = Color.White
                     )
                 }
                 Column(modifier = Modifier.padding(start = 16.dp)) {
                     Text(
-                        text = event.date,
+                        text = data.category,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Black,
+                        color = Color.White,
                         modifier = Modifier.align(Alignment.End)
                     )
                     Text(
-                        text = event.time,
+                        text = data.startTime,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Black,
+                        color = Color.White,
+                        modifier = Modifier.align(Alignment.End)
+                    )
+
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun EventItemCard2(data: Project, onClick: () -> Unit, viewModel: SharedViewModel, photoResId: Int) {
+    Surface(
+
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .clip(RoundedCornerShape(18.dp))
+            .shadow(18.dp).clickable{viewModel.updateProject(data);  onClick() },
+        color = green40,
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Image(
+                painter = painterResource(photoResId),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .clip(shape = RoundedCornerShape(18.dp)),
+                contentScale = ContentScale.Crop
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Row {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = data.name,
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = data.description,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.White
+                    )
+                }
+                Column(modifier = Modifier.padding(start = 16.dp)) {
+                    Text(
+                        text = data.category,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.White,
                         modifier = Modifier.align(Alignment.End)
                     )
                     Text(
-                        text = event.location,
+                        text = data.startTime,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Black,
+                        color = Color.White,
                         modifier = Modifier.align(Alignment.End)
                     )
+
                 }
             }
         }

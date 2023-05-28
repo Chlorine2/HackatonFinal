@@ -2,6 +2,7 @@ package com.example.hackatonfinal.network
 
 
 import com.example.hackatonfinal.models.AuthorizationModel
+import com.example.hackatonfinal.models.Project
 import com.example.hackatonfinal.models.RegistrationModel
 import com.example.hackatonfinal.models.Token
 import retrofit2.Response
@@ -20,6 +21,17 @@ class CarSharingApiClient(private val carSharingApiService: HakatonFinalApiServi
 
     }
 
+    suspend fun getAllProjects(token : String) : ErrorHandler<List<Project>>{
+
+        return safeApiCall {carSharingApiService.getAllProjects(token)}
+
+    }
+
+    suspend fun getAllFutureProjects(token : String) : ErrorHandler<List<Project>>{
+
+        return safeApiCall {carSharingApiService.getAllFutureProjects(token)}
+
+    }
 
 
     private inline fun <T> safeApiCall(apiCall: () -> Response<T>) : ErrorHandler<T>{

@@ -12,16 +12,22 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.hackatonfinal.R
 import com.example.hackatonfinal.Screens.Event
+import com.example.hackatonfinal.Screens.EventItemCard
+import com.example.hackatonfinal.Screens.NotificationScreen
 import com.example.hackatonfinal.Screens.ProfileScreen.Awards
 import com.example.hackatonfinal.Screens.ProfileScreen.AwardsScreen
 import com.example.hackatonfinal.Screens.ProfileScreen.CompaniesScreen
 import com.example.hackatonfinal.Screens.ProfileScreen.HistoryCard
 import com.example.hackatonfinal.Screens.ProfileScreen.MyScreen
 import com.example.hackatonfinal.Screens.SearchScreen
+import com.example.hackatonfinal.Screens.SingleNotificationScreen
+import com.example.hackatonfinal.Screens.SingleSearchScreen
+import com.example.hackatonfinal.navigateSingleTopTo
+import com.example.hackatonfinal.viewModel.SharedViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun HomeNavGraph(navController: NavHostController) {
+fun HomeNavGraph(navController: NavHostController, viewModel: SharedViewModel) {
 
     NavHost(
         navController = navController,
@@ -29,7 +35,7 @@ fun HomeNavGraph(navController: NavHostController) {
         startDestination = ListOfScreens.SearchProject.name
     ){
         composable(ListOfScreens.SearchProject.name){
-            SearchScreen()
+            SearchScreen(viewModel = viewModel,onClick = {navController.navigateSingleTopTo(ListOfScreens.DetailProject.name)})
         }
         composable(ListOfScreens.Statistic.name){
             Text(text = "Hello")
@@ -38,7 +44,9 @@ fun HomeNavGraph(navController: NavHostController) {
             MyScreen(navController)
         }
         composable(ListOfScreens.Notifications.name){
-            Text(text = "Hello")
+            NotificationScreen(viewModel = viewModel, onClick = {navController.navigateSingleTopTo(ListOfScreens.DetailNotification.name)})
+
+
         }
 
         composable(ListOfScreens.Companies.name){
@@ -47,6 +55,12 @@ fun HomeNavGraph(navController: NavHostController) {
 
         composable(ListOfScreens.Awards.name){
             AwardsScreen(navController)
+        }
+        composable(ListOfScreens.DetailProject.name){
+            SingleSearchScreen(viewModel = viewModel)
+        }
+        composable(ListOfScreens.DetailNotification.name){
+            SingleNotificationScreen(viewModel = viewModel)
         }
 
         composable(ListOfScreens.Detail.name){

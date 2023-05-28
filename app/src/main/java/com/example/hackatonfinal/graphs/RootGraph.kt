@@ -21,7 +21,9 @@ enum class ListOfScreens(){
     Notifications(),
     Companies(),
     Awards(),
-    Detail()
+    DetailProject(),
+    DetailNotification(),
+    Detail(),
 
 
 
@@ -38,7 +40,7 @@ fun RootNavigationGraph(navController: NavHostController, viewModel: SharedViewM
     ) {
         authNavGraph(navController = navController, viewModel)
         composable(route = Graph.HOME) {
-            Greeting()
+            Greeting(viewModel = viewModel)
         }
     }
 }

@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -81,16 +82,16 @@ fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit =
                     color = blue,
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                RegisterName()
+                RegisterName(viewModel)
+
+                Spacer(modifier = Modifier.height(8.dp))
+                RegisterLastName(viewModel)
 
                 Spacer(modifier = Modifier.padding(3.dp))
-                RegisterPhone()
+                RegisterEmail(viewModel)
 
                 Spacer(modifier = Modifier.padding(3.dp))
-                RegisterEmail()
-
-                Spacer(modifier = Modifier.padding(3.dp))
-                RegisterPassword()
+                RegisterPassword(viewModel)
 
                 Spacer(modifier = Modifier.padding(3.dp))
                 RegisterPasswordConfirm()
@@ -158,13 +159,12 @@ fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit =
 //name
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterName() {
+fun RegisterName(viewModel : SharedViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    var text by rememberSaveable { mutableStateOf("") }
 
     OutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = viewModel.firstname.collectAsState().value,
+        onValueChange = {it -> viewModel.updateFirstName(it) },
         shape = RoundedCornerShape(100),
         label = {
             Text("Name",
@@ -195,23 +195,22 @@ fun RegisterName() {
 //phone
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterPhone() {
+fun RegisterLastName(viewModel: SharedViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    var text by rememberSaveable { mutableStateOf("") }
 
     OutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = viewModel.firstname.collectAsState().value,
+        onValueChange = { viewModel.updateLastName(it) },
         shape = RoundedCornerShape(100),
         label = {
-            Text("Phone",
+            Text("Name",
                 color = blue,
                 style = MaterialTheme.typography.bodyLarge,
             ) },
-        placeholder = { Text(text = "Phone") },
+        placeholder = { Text(text = "Name") },
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
-            keyboardType = KeyboardType.Phone
+            keyboardType = KeyboardType.Text
         ),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = blue,
@@ -232,13 +231,12 @@ fun RegisterPhone() {
 //email id
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterEmail() {
+fun RegisterEmail(viewModel: SharedViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
-    var text by rememberSaveable { mutableStateOf("") }
 
     OutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = viewModel.mail.collectAsState().value,
+        onValueChange = { viewModel.updateEmail(it)},
         shape = RoundedCornerShape(100),
         label = {
             Text("Email Address",
@@ -268,13 +266,15 @@ fun RegisterEmail() {
 //password
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterPassword() {
+fun RegisterPassword(viewModel: SharedViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
     var password by rememberSaveable { mutableStateOf("") }
     var passwordHidden by rememberSaveable { mutableStateOf(true) }
+
+
     OutlinedTextField(
-        value = password,
-        onValueChange = { password = it },
+        value = viewModel.password.collectAsState().value,
+        onValueChange = { viewModel.updatePassword(it) },
         shape = RoundedCornerShape(100),
         label = {
             Text("Enter Password",

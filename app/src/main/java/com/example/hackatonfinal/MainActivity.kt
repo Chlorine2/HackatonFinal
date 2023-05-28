@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Greeting(navController: NavHostController = rememberNavController()) {
+fun Greeting(navController: NavHostController = rememberNavController(), viewModel: SharedViewModel) {
     val backStackEntry = navController.currentBackStackEntryAsState()
 
     Scaffold(
@@ -96,7 +96,7 @@ fun Greeting(navController: NavHostController = rememberNavController()) {
         },
         content = { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
-                HomeNavGraph(navController)
+                HomeNavGraph(navController, viewModel = viewModel)
             }
         }
     )
@@ -151,13 +151,8 @@ val bottomNavItems = listOf(
         icon = Icons.Rounded.Home,
     ),
     BottomNavItem(
-        name = "Statistic",
-        route = ListOfScreens.Statistic.name,
-        icon = Icons.Rounded.CheckCircle,
-    ),
-    BottomNavItem(
         name = "Notifications",
-        route = ListOfScreens.Statistic.name,
+        route = ListOfScreens.Notifications.name,
         icon = Icons.Rounded.Notifications,
     ),
     BottomNavItem(

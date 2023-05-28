@@ -17,6 +17,10 @@ interface HakatonFinalApiService {
     @POST("auth/authenticate")
     suspend fun postAuthorization(@Body data: AuthorizationModel) : Response<Token>
 
+    @GET("/projects/get")
+    suspend fun getAllProjects(@Header("Authorization") token: String, ) : Response<List<Project>>
 
+    @GET("/notifications")
+    suspend fun getAllFutureProjects(@Header("Authorization") token: String, ) : Response<List<Project>>
 
 }
