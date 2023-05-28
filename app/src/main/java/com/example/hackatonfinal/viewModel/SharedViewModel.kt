@@ -60,6 +60,15 @@ class SharedViewModel : ViewModel(){
     private val _allFutureProjects = MutableStateFlow<List<Project>>(emptyList())
     val allFutureProjects : StateFlow<List<Project>> = _allFutureProjects.asStateFlow()
 
+    private val _pictures = MutableStateFlow<Int>(-1)
+    val pictures : StateFlow<Int> = _pictures.asStateFlow()
+
+    private val _score = MutableStateFlow<Int>(24)
+    val score : StateFlow<Int> = _score.asStateFlow()
+
+    private val _monthlyScore = MutableStateFlow<Int>(95)
+    val monthlyScore : StateFlow<Int> = _monthlyScore.asStateFlow()
+
     init {
         connectInternet()
     }
@@ -157,6 +166,14 @@ class SharedViewModel : ViewModel(){
     }
     fun updateProject(project: Project){
         _currentProject.value = project
+    }
+    fun updatePicture(pict : Int){
+        _pictures.value = pict
+    }
+    fun updateScore(points : Int){
+        _monthlyScore.value += points
+        _score.value += points
+
     }
 
 

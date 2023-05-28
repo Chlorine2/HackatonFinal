@@ -44,7 +44,7 @@ fun HomeNavGraph(navController: NavHostController, viewModel: SharedViewModel) {
             Text(text = "Hello")
         }
         composable(ListOfScreens.Profile.name){
-            MyScreen(navController)
+            MyScreen(navController, viewModel = viewModel)
         }
         composable(ListOfScreens.Notifications.name){
             NotificationScreen(viewModel = viewModel, onClick = {navController.navigateSingleTopTo(ListOfScreens.DetailNotification.name)})
