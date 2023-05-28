@@ -38,6 +38,7 @@ import com.example.hackatonfinal.R
 import com.example.hackatonfinal.graphs.ListOfScreens
 import com.example.hackatonfinal.ui.theme.blue
 import com.example.hackatonfinal.ui.theme.green40
+import com.example.hackatonfinal.viewModel.SharedViewModel
 import java.util.Stack
 
 data class EventHistory(
@@ -48,7 +49,7 @@ data class EventHistory(
 )
 
 @Composable
-fun MyScreen(navController: NavController) {
+fun MyScreen(navController: NavController, viewModel: SharedViewModel) {
     val eventHistoryList = listOf(
         EventHistory(
             title = "Lviv Open Lab",
@@ -131,8 +132,8 @@ fun MyScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 CardField(title = "Companies", number = 23)
-                CardField(title = "Monthly Hours", number = 24)
-                CardField(title = "Total", number = 95)
+                CardField(title = "Monthly Hours", number = viewModel.score.collectAsState().value)
+                CardField(title = "Total", number = viewModel.monthlyScore.collectAsState().value)
             }
         }
         Button(
@@ -148,7 +149,9 @@ fun MyScreen(navController: NavController) {
             Text(text = "Awards")
         }
 
-        Column(modifier = Modifier.padding(16.dp).offset(y = (-100.dp))) {
+        Column(modifier = Modifier
+            .padding(16.dp)
+            .offset(y = (-100.dp))) {
             eventHistoryList.take(currentIndex).forEach { event ->
                 HistoryCard(event = event)
                 Spacer(modifier = Modifier.height(16.dp))

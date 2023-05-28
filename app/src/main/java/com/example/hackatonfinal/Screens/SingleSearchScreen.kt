@@ -27,6 +27,8 @@ import com.example.hackatonfinal.R
 import com.example.hackatonfinal.ui.theme.green40
 import com.example.hackatonfinal.viewModel.SharedViewModel
 
+
+
 @Composable
 fun SingleSearchScreen(viewModel: SharedViewModel){
     var count by remember { mutableStateOf(0) }
@@ -37,7 +39,7 @@ fun SingleSearchScreen(viewModel: SharedViewModel){
             data = viewModel.currentProject.collectAsState().value,
             onClick = {},
             viewModel = viewModel,
-            R.drawable.img
+            viewModel.pictures.collectAsState().value
         )
         Spacer(modifier = Modifier.padding(10.dp))
         Row(horizontalArrangement = Arrangement.Center){
@@ -63,8 +65,9 @@ fun SingleSearchScreen(viewModel: SharedViewModel){
 
         Spacer(modifier = Modifier.padding(10.dp))
 
-        Button(onClick = {}, modifier = Modifier
-            .fillMaxWidth().padding(horizontal = 10.dp), shape = RoundedCornerShape(100.dp),
+        Button(onClick = {viewModel.updateScore(count)}, modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 10.dp), shape = RoundedCornerShape(100.dp),
             colors = ButtonDefaults.buttonColors(green40)) {
             Text("Write Hours", fontSize = 20.sp, fontWeight = FontWeight.Light)
 

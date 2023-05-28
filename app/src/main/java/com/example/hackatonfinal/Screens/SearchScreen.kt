@@ -27,15 +27,23 @@ fun SearchScreen(viewModel: SharedViewModel, onClick : () -> Unit){
         //    items = listOf("Education", "Environment", "Social", "War"),
         //    selectedIndex = selectedIndex,
         //    onItemSelected = { index, _ -> selectedIndex = index},
-        //
+
+        val pictures = listOf(R.drawable.img_6, R.drawable.img_5, R.drawable.img)
+        var count : Int = 0
         viewModel.GetAllProjects()
+
         LazyColumn {
 
             items(viewModel.allProjects.value){
                     data ->
 
 
-                EventItemCard(data, onClick = {onClick()}, viewModel = viewModel, R.drawable.img, 295.dp)
+                EventItemCard(data, onClick = {onClick()}, viewModel = viewModel, pictures[count], 295.dp)
+                viewModel.updatePicture(pictures[count])
+                count++
+                if(count == 3){
+                    count = 0
+                }
             }
         }
 
