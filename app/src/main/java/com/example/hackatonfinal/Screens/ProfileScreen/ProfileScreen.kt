@@ -51,24 +51,31 @@ data class EventHistory(
 fun MyScreen(navController: NavController) {
     val eventHistoryList = listOf(
         EventHistory(
-            title = "Назва події 1",
-            time = "19:00 - 22:00\n3 hours",
-            location = "Місце проведення 1",
-            description = "Tra tra das 1"
+            title = "Lviv Open Lab",
+            time = "3 hours",
+            location = "Avenue Chervonoi Kalyny",
+            description = "Medical assistance"
         ),
         EventHistory(
-            title = "Назва події 2",
-            time = "20:00 - 23:00\n3 hours",
-            location = "Місце проведення 2",
-            description = "Tra tra das 2"
+            title = "Lvivskyi lytsar",
+            time = "3 hours",
+            location = "Chornovola avenue",
+            description = "Assistance to Ukrainian soldiers"
         ),
         EventHistory(
-            title = "Назва події 3",
-            time = "21:00 - 00:00\n3 hours",
-            location = "Місце проведення 3",
-            description = "Tra tra das 3"
+            title = "Plast",
+            time = "3 hours",
+            location = "Saharova str",
+            description = "Cooking meals for refugees"
+        ), EventHistory(
+            title = "Bur",
+            time = "3 hours",
+            location = "Plyznyka str",
+            description = "Unloading the machine"
         )
     )
+    val visibleItemCount = 2
+    var currentIndex by remember { mutableStateOf(visibleItemCount) }
 
     Column(
         modifier = Modifier
@@ -76,19 +83,16 @@ fun MyScreen(navController: NavController) {
             .background(Color.White)
             .verticalScroll(rememberScrollState())
     ) {
-
         Box(
             modifier = Modifier
                 .height(350.dp)
                 .fillMaxWidth()
                 .background(green40)
                 .zIndex(-20f)
-
         ) {
             // Фото, яке можна змінювати за натиском
-
             Image(
-                painter = painterResource(id = R.drawable.img),
+                painter = painterResource(id = R.drawable.img_2),
                 contentDescription = "User Photo",
                 modifier = Modifier
                     .size(150.dp)
@@ -105,7 +109,7 @@ fun MyScreen(navController: NavController) {
                 .align(Alignment.CenterHorizontally)
         ) {
             Text(
-                text = "Ім'я користувача",
+                text = "Ostap Vyshnia",
                 modifier = Modifier
                     .padding(start = 16.dp, end = 16.dp)
                     .align(Alignment.CenterHorizontally)
@@ -144,17 +148,26 @@ fun MyScreen(navController: NavController) {
             Text(text = "Awards")
         }
 
-        Column(modifier = Modifier
-            .padding(16.dp)
-            .offset(y = (-100.dp))) {
-            eventHistoryList.forEach { event ->
+        Column(modifier = Modifier.padding(16.dp).offset(y = (-100.dp))) {
+            eventHistoryList.take(currentIndex).forEach { event ->
                 HistoryCard(event = event)
                 Spacer(modifier = Modifier.height(16.dp))
+            }
+
+            if (currentIndex < eventHistoryList.size) {
+                Button(
+                    onClick = {
+                        currentIndex += visibleItemCount
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(blue)
+                ) {
+                    Text(text = "Завантажити ще")
+                }
             }
         }
     }
 }
-
     @Composable
     fun CardField(title: String, number: Int) {
         Column(
@@ -180,10 +193,10 @@ fun MyScreen(navController: NavController) {
         ) {
             Column(
                 modifier = Modifier.padding(
-                    top = 16.dp,
+                    top = 8.dp,
                     start = 16.dp,
                     end = 16.dp,
-                    bottom = 16.dp
+                    bottom = 8.dp
                 )
             ) {
                 Row {

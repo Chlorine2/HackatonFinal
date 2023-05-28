@@ -1,14 +1,18 @@
 package com.example.hackatonfinal.graphs
 
+import DetailsScreen
 import android.os.Build
+import android.telecom.Call.Details
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.input.key.Key.Companion.D
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.hackatonfinal.R
 import com.example.hackatonfinal.Screens.Event
+import com.example.hackatonfinal.Screens.ProfileScreen.Awards
 import com.example.hackatonfinal.Screens.ProfileScreen.AwardsScreen
 import com.example.hackatonfinal.Screens.ProfileScreen.CompaniesScreen
 import com.example.hackatonfinal.Screens.ProfileScreen.HistoryCard
@@ -44,6 +48,12 @@ fun HomeNavGraph(navController: NavHostController) {
         composable(ListOfScreens.Awards.name){
             AwardsScreen(navController)
         }
+
+        composable(ListOfScreens.Detail.name){
+            //DetailsScreen()
+        }
+
+
 
 
 

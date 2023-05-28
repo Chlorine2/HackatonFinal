@@ -2,13 +2,20 @@ package com.example.hackatonfinal.Screens.ProfileScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -92,28 +99,34 @@ fun CompaniesScreen(navController: NavHostController) {
     val companies = listOf(
         Companies(
             photoResId = R.drawable.img_1,
-            title = "Назва події 1",
-            location = "Місце проведення 1",
-            description = "Tra tra das 1"
+            title = "SoftServe",
+            location = "Lviv",
+            description = ""
         ),
         Companies(
-            photoResId = R.drawable.img_1,
-            title = "Назва події 2",
-            location = "Місце проведення 2",
-            description = "Tra tra das 2"
+            photoResId = R.drawable.img_3,
+            title = "Apple",
+            location = "Los Angeles",
+            description = ""
         ),
         Companies(
-            photoResId = R.drawable.img_1,
-            title = "Назва події 3",
-            location = "Місце проведення 3",
-            description = "Tra tra das 3"
+            photoResId = R.drawable.img_4,
+            title = "Sombra",
+            location = "Lviv",
+            description = ""
         )
     )
 
-    Column(modifier = Modifier.fillMaxWidth()) {
-        companies.forEach { company ->
-            CompaniesItemCard(navController, company)
-        }
+    val scrollState = rememberScrollState()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)
+    ) {
+            companies.forEach { company ->
+                CompaniesItemCard(navController, company)
+            }
     }
+
 }
 

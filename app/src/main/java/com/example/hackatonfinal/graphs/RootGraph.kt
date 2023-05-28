@@ -20,7 +20,8 @@ enum class ListOfScreens(){
     Profile(),
     Notifications(),
     Companies(),
-    Awards()
+    Awards(),
+    Detail()
 
 
 

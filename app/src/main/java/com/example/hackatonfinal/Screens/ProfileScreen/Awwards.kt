@@ -5,10 +5,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -44,7 +47,8 @@ fun AwardsItemCard(navController: NavController, awards: Companies) {
             .shadow(18.dp),
         color = Color.LightGray,
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(16.dp).clickable{navController.navigate(ListOfScreens.Detail.name)}
+        ) {
             Image(
                 painter = painterResource(awards.photoResId),
                 contentDescription = null,
@@ -89,29 +93,33 @@ fun AwardsItemCard(navController: NavController, awards: Companies) {
 fun AwardsScreen(navController: NavController) {
     val companies = listOf(
         Companies(
-            photoResId = R.drawable.img,
-            title = "Назва події 1",
-            location = "Місце проведення 1",
-            description = "Tra tra das 1"
+            photoResId = R.drawable.img_5,
+            title = "Unloading the cars",
+            location = "Lviv",
+            description = ""
         ),
         Companies(
             photoResId = R.drawable.img,
-            title = "Назва події 2",
-            location = "Місце проведення 2",
-            description = "Tra tra das 2"
+            title = "Netting",
+            location = "Lviv",
+            description = ""
         ),
         Companies(
-            photoResId = R.drawable.img,
-            title = "Назва події 3",
-            location = "Місце проведення 3",
-            description = "Tra tra das 3"
+            photoResId = R.drawable.img_6,
+            title = "Рelp with clothes",
+            location = "Lviv",
+            description = ""
         )
     )
 
-    Column(modifier = Modifier.fillMaxWidth()) {
-        companies.forEach { awards ->
-            AwardsItemCard(navController, awards)
-        }
+    val scrollState = rememberScrollState()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)
+    ) {        companies.forEach { awards ->
+        AwardsItemCard(navController, awards)
+    }
     }
 }
 
