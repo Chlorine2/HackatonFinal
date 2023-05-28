@@ -93,21 +93,21 @@ fun AwardsItemCard(navController: NavController, awards: Companies) {
 fun AwardsScreen(navController: NavController) {
     val companies = listOf(
         Companies(
-            photoResId = R.drawable.img_5,
-            title = "Unloading the cars",
+            photoResId = R.drawable.img_7,
+            title = "Travel to Truskavets",
+            location = "",
+            description = ""
+        ),
+        Companies(
+            photoResId = R.drawable.img_8,
+            title = "Concert of Ivo Bobula",
             location = "Lviv",
             description = ""
         ),
         Companies(
-            photoResId = R.drawable.img,
-            title = "Netting",
-            location = "Lviv",
-            description = ""
-        ),
-        Companies(
-            photoResId = R.drawable.img_6,
-            title = "Рelp with clothes",
-            location = "Lviv",
+            photoResId = R.drawable.img_9,
+            title = "Bottle of bear",
+            location = "",
             description = ""
         )
     )

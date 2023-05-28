@@ -28,7 +28,7 @@ fun SearchScreen(viewModel: SharedViewModel, onClick : () -> Unit){
         //    selectedIndex = selectedIndex,
         //    onItemSelected = { index, _ -> selectedIndex = index},
         //
-            viewModel.GetAllProjects()
+        viewModel.GetAllProjects()
         LazyColumn {
 
             items(viewModel.allProjects.value){

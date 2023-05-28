@@ -47,17 +47,17 @@ class SharedRepository : InterfaceSharedRepository {
     }
 
     override suspend fun getAllProjects(token: String): List<Project>? {
-            val request = apiClient.getAllProjects(token)
-            Log.d("teg", request.toString())
-            if (request.failed) {
-                return null
-            }
+        val request = apiClient.getAllProjects(token)
+        Log.d("teg", request.toString())
+        if (request.failed) {
+            return null
+        }
 
-            if (!request.isSuccessful) {
-                return null
+        if (!request.isSuccessful) {
+            return null
 
-            }
-            return request.body
+        }
+        return request.body
 
     }
 
