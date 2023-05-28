@@ -119,6 +119,7 @@ fun RegistrationPage(onClickSignUp: () -> Unit = {}, onClickReset : () -> Unit =
                 {
                     if(viewModel.SignUp()) {
                         onClickSignUp()
+
                     }
                 }) {
                     Text(

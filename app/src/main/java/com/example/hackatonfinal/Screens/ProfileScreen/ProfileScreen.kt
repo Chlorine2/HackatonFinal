@@ -132,8 +132,9 @@ fun MyScreen(navController: NavController, viewModel: SharedViewModel) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 CardField(title = "Companies", number = 23)
-                CardField(title = "Monthly Hours", number = viewModel.score.collectAsState().value)
-                CardField(title = "Total", number = viewModel.monthlyScore.collectAsState().value)
+                CardField(title = "Monthly Hours", number = viewModel.monthlyScore.collectAsState().value)
+                CardField(title = "Points", number = viewModel.points.collectAsState().value)
+
             }
         }
         Button(

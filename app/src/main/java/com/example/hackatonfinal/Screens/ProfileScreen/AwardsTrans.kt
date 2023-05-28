@@ -31,6 +31,7 @@ import androidx.navigation.NavController
 import com.example.hackatonfinal.R
 import com.example.hackatonfinal.graphs.ListOfScreens
 import com.example.hackatonfinal.ui.theme.blue
+import com.example.hackatonfinal.viewModel.SharedViewModel
 
 data class Hui1(
     val photoResId: Int,
@@ -39,7 +40,7 @@ data class Hui1(
     val description: String
 )
 @Composable
-fun AwardsItemCard1(navController: NavController, awards: Companies) {
+fun AwardsItemCard1(navController: NavController, awards: Companies, viewModel: SharedViewModel) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,9 +77,12 @@ fun AwardsItemCard1(navController: NavController, awards: Companies) {
                     )
                     Button(
                         onClick = {
+                            viewModel.updatePoints(-100)
+
                             navController.navigate(ListOfScreens.Detail.name) {
                                 launchSingleTop = true
                             }
+
                         },
                         colors = ButtonDefaults.buttonColors(
                             blue,
@@ -110,7 +114,7 @@ fun AwardsItemCard1(navController: NavController, awards: Companies) {
 
 
 @Composable
-fun AwardElectro(navController: NavController) {
+fun AwardElectro(navController: NavController, viewModel: SharedViewModel) {
     val companies1 = listOf(
         Companies(
             photoResId = R.drawable.img_12,
@@ -134,7 +138,7 @@ fun AwardElectro(navController: NavController) {
             .verticalScroll(scrollState)
     ) {
         companies1.forEach { awards1 ->
-        AwardsItemCard1(navController, awards1)
+        AwardsItemCard1(navController, awards1, viewModel = viewModel)
     }
     }
 }

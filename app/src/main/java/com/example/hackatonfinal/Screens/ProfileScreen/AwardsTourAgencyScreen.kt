@@ -33,12 +33,11 @@ import com.example.hackatonfinal.R
 import com.example.hackatonfinal.graphs.ListOfScreens
 import com.example.hackatonfinal.ui.theme.background
 import com.example.hackatonfinal.ui.theme.blue
-
-
+import com.example.hackatonfinal.viewModel.SharedViewModel
 
 
 @Composable
-fun AwardsItemCard2(navController: NavController, awards: Companies) {
+fun AwardsItemCard2(navController: NavController, awards: Companies, viewModel : SharedViewModel) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,6 +75,8 @@ fun AwardsItemCard2(navController: NavController, awards: Companies) {
                     )
                     Button(
                         onClick = {
+                            viewModel.updatePoints(-100)
+
                             navController.navigate(ListOfScreens.Detail.name) {
                                 launchSingleTop = true
                             }
@@ -114,7 +115,7 @@ fun AwardsItemCard2(navController: NavController, awards: Companies) {
     }
 }
 @Composable
-fun AwardsScreen2(navController: NavController) {
+fun AwardsScreen2(navController: NavController, viewModel: SharedViewModel) {
     val companies = listOf(
         Companies(
             photoResId = R.drawable.img_10,
@@ -131,7 +132,7 @@ fun AwardsScreen2(navController: NavController) {
             .fillMaxSize()
             .verticalScroll(scrollState)
     ) {        companies.forEach { awards ->
-        AwardsItemCard2(navController, awards)
+        AwardsItemCard2(navController, awards, viewModel = viewModel)
     }
     }
 }

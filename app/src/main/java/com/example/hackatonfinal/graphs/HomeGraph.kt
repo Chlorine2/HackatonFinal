@@ -57,7 +57,7 @@ fun HomeNavGraph(navController: NavHostController, viewModel: SharedViewModel) {
         }
 
         composable(ListOfScreens.AwardsSoftServe.name){
-            AwardsScreen(navController)
+            AwardsScreen(navController, viewModel = viewModel)
         }
         composable(ListOfScreens.DetailProject.name){
             SingleSearchScreen(viewModel = viewModel)
@@ -71,11 +71,11 @@ fun HomeNavGraph(navController: NavHostController, viewModel: SharedViewModel) {
         }
 
         composable(ListOfScreens.AwardsTrans.name){
-            AwardElectro(navController)
+            AwardElectro(navController, viewModel = viewModel)
         }
 
         composable(ListOfScreens.AwardsConcerts.name){
-            AwardsScreen2(navController)
+            AwardsScreen2(navController, viewModel = viewModel)
         }
 
 

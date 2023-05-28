@@ -63,10 +63,13 @@ class SharedViewModel : ViewModel(){
     private val _pictures = MutableStateFlow<Int>(-1)
     val pictures : StateFlow<Int> = _pictures.asStateFlow()
 
-    private val _score = MutableStateFlow<Int>(24)
+    private val _score = MutableStateFlow<Int>(95)
     val score : StateFlow<Int> = _score.asStateFlow()
 
-    private val _monthlyScore = MutableStateFlow<Int>(95)
+    private val _points = MutableStateFlow<Int>(950)
+    val points : StateFlow<Int> = _points.asStateFlow()
+
+    private val _monthlyScore = MutableStateFlow<Int>(25)
     val monthlyScore : StateFlow<Int> = _monthlyScore.asStateFlow()
 
     init {
@@ -80,7 +83,7 @@ class SharedViewModel : ViewModel(){
             appUiState = try {
 
 
-                _token.value = SharedRepository().postAuthorization(AuthorizationModel("nazstttikler@gmail.com", "killer23"))!!
+                //SharedRepository().postAuthorization(AuthorizationModel("nazstttikler@gmail.com", "killer23"))!!
 
                 AppUiState.Success
             } catch (e: IOException) {
@@ -95,6 +98,8 @@ class SharedViewModel : ViewModel(){
 
         viewModelScope.launch {
             try {
+
+                _token.value = SharedRepository().postAuthorization(AuthorizationModel(email = mail.value, password = password.value))!!
 
                 _pass.value = true
 
@@ -173,7 +178,11 @@ class SharedViewModel : ViewModel(){
     fun updateScore(points : Int){
         _monthlyScore.value += points
         _score.value += points
+        _points.value += points * 10
 
+    }
+    fun updatePoints(points : Int){
+        _points.value += points * 10
     }
 
 

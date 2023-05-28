@@ -39,7 +39,7 @@ fun SingleSearchScreen(viewModel: SharedViewModel){
             data = viewModel.currentProject.collectAsState().value,
             onClick = {},
             viewModel = viewModel,
-            viewModel.pictures.collectAsState().value
+            photoResId = viewModel.pictures.collectAsState().value
         )
         Spacer(modifier = Modifier.padding(10.dp))
         Row(horizontalArrangement = Arrangement.Center){
