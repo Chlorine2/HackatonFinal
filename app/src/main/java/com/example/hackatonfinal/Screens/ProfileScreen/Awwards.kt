@@ -44,7 +44,7 @@ data class Awards(
 
 
 @Composable
-fun AwardsItemCard(navController: NavController, awards: Companies, viewModel : SharedViewModel) {
+fun AwardsItemCard(navController: NavController, awards: Companies, viewModel: SharedViewModel) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -83,9 +83,11 @@ fun AwardsItemCard(navController: NavController, awards: Companies, viewModel : 
                     Button(
                         onClick = {
                             viewModel.updatePoints(-15)
+
                             navController.navigate(ListOfScreens.Detail.name) {
                                 launchSingleTop = true
                             }
+
                         },
                         colors = ButtonDefaults.buttonColors(
                             blue,
@@ -94,6 +96,7 @@ fun AwardsItemCard(navController: NavController, awards: Companies, viewModel : 
                     ) {
                         Text(text = "Buy")
                     }
+
 
                 }
                 Column(modifier = Modifier.padding(start = 16.dp)) {
@@ -124,8 +127,22 @@ fun AwardsItemCard(navController: NavController, awards: Companies, viewModel : 
 fun AwardsScreen(navController: NavController, viewModel: SharedViewModel) {
     val companies = listOf(
         Companies(
-            photoResId = R.drawable.img_10,
-            title = "Rent office",
+            photoResId = R.drawable.img_15,
+            title = "But cinema ticket",
+            price = "150 points",
+            location = "",
+            description = ""
+        ),
+        Companies(
+            photoResId = R.drawable.img_16,
+            title = "One hour in VR club",
+            price = "150 points",
+            location = "",
+            description = ""
+        ),
+        Companies(
+            photoResId = R.drawable.img_18,
+            title = "One hour in karaoke",
             price = "150 points",
             location = "",
             description = ""
@@ -138,7 +155,7 @@ fun AwardsScreen(navController: NavController, viewModel: SharedViewModel) {
             .fillMaxSize()
             .verticalScroll(scrollState)
     ) {        companies.forEach { awards ->
-        AwardsItemCard(navController, awards, viewModel = viewModel)
+        AwardsItemCard(navController, awards, viewModel)
     }
     }
 }

@@ -1,7 +1,8 @@
 package com.example.hackatonfinal.Screens
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,9 +21,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.hackatonfinal.models.Project
-import com.example.hackatonfinal.ui.theme.blue
 import com.example.hackatonfinal.ui.theme.green40
 import com.example.hackatonfinal.viewModel.SharedViewModel
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 data class Event(
     val photoResId: Int,
@@ -41,7 +44,8 @@ fun EventItemCard(data: Project, onClick: () -> Unit, viewModel: SharedViewModel
             .padding(8.dp)
             .clip(RoundedCornerShape(20.dp))
             .shadow(18.dp)
-            .requiredHeight(height).clickable{viewModel.updateProject(data);  onClick() },
+            .requiredHeight(height)
+            .clickable { viewModel.updateProject(data); onClick() },
         color = green40
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -78,7 +82,7 @@ fun EventItemCard(data: Project, onClick: () -> Unit, viewModel: SharedViewModel
                         modifier = Modifier.align(Alignment.End)
                     )
                     Text(
-                        text = data.startTime,
+                        text = formatDateAndTime(data.startTime),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.White,
                         modifier = Modifier.align(Alignment.End)
@@ -90,6 +94,7 @@ fun EventItemCard(data: Project, onClick: () -> Unit, viewModel: SharedViewModel
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun EventItemCard2(data: Project, onClick: () -> Unit, viewModel: SharedViewModel, photoResId: Int) {
     Surface(
@@ -98,7 +103,8 @@ fun EventItemCard2(data: Project, onClick: () -> Unit, viewModel: SharedViewMode
             .fillMaxWidth()
             .padding(16.dp)
             .clip(RoundedCornerShape(18.dp))
-            .shadow(18.dp).clickable{viewModel.updateProject(data);  onClick() },
+            .shadow(18.dp)
+            .clickable { viewModel.updateProject(data); onClick() },
         color = green40,
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -136,7 +142,7 @@ fun EventItemCard2(data: Project, onClick: () -> Unit, viewModel: SharedViewMode
                         modifier = Modifier.align(Alignment.End)
                     )
                     Text(
-                        text = data.startTime,
+                        text = formatDateAndTime(data.startTime),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.White,
                         modifier = Modifier.align(Alignment.End)
@@ -146,4 +152,17 @@ fun EventItemCard2(data: Project, onClick: () -> Unit, viewModel: SharedViewMode
             }
         }
     }
+}
+private fun formatDateAndTime(dateTime: String): String {
+    var formattedDate = ""
+    try {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        val date = dateFormat.parse(dateTime)
+        val outputDateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm") // Формат виведення дати і часу
+        formattedDate = outputDateFormat.format(date)
+    } catch (e: ParseException) {
+        e.printStackTrace()
+        // Обробка помилки розпарсингу дати
+    }
+    return formattedDate
 }

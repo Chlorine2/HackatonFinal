@@ -36,6 +36,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImagePainter.State.Empty.painter
 import com.example.hackatonfinal.R
 import com.example.hackatonfinal.graphs.ListOfScreens
+import com.example.hackatonfinal.ui.theme.back
 import com.example.hackatonfinal.ui.theme.blue
 import com.example.hackatonfinal.ui.theme.green40
 import com.example.hackatonfinal.viewModel.SharedViewModel

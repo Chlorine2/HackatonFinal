@@ -105,6 +105,12 @@ fun CompaniesItemCard(navController: NavController, companies: Companies) {
 fun CompaniesScreen(navController: NavHostController) {
     val companies = listOf(
         Companies(
+            photoResId = R.drawable.img_14,
+            title = "Entertainment",
+            price = "",
+            location = "Lviv",
+            description = ""
+        ),Companies(
             photoResId = R.drawable.img_1,
             title = "SoftServe",
             price = "",
@@ -119,8 +125,8 @@ fun CompaniesScreen(navController: NavHostController) {
             description = ""
         ),
         Companies(
-            photoResId = R.drawable.img_4,
-            title = "Sombra",
+            photoResId = R.drawable.img_13,
+            title = "Concerts",
             price = "",
             location = "Lviv",
             description = ""

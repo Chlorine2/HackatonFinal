@@ -1,5 +1,7 @@
 package com.example.hackatonfinal.Screens
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,6 +31,7 @@ import com.example.hackatonfinal.viewModel.SharedViewModel
 
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SingleSearchScreen(viewModel: SharedViewModel){
     var count by remember { mutableStateOf(0) }
@@ -75,6 +78,7 @@ fun SingleSearchScreen(viewModel: SharedViewModel){
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SingleNotificationScreen(viewModel: SharedViewModel) {
     Column(

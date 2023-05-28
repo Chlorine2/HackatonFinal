@@ -200,15 +200,15 @@ fun RegisterLastName(viewModel: SharedViewModel) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     OutlinedTextField(
-        value = viewModel.firstname.collectAsState().value,
+        value = viewModel.lastname.collectAsState().value,
         onValueChange = { viewModel.updateLastName(it) },
         shape = RoundedCornerShape(100),
         label = {
-            Text("Name",
+            Text("Last Name",
                 color = blue,
                 style = MaterialTheme.typography.bodyLarge,
             ) },
-        placeholder = { Text(text = "Name") },
+        placeholder = { Text(text = "Last Name") },
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
             keyboardType = KeyboardType.Text

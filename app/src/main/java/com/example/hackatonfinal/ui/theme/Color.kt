@@ -11,3 +11,4 @@ import androidx.compose.ui.graphics.Color
 val green40 = Color(0xFF020122)
 val blue = Color(0xFF003D5B)
 val background = Color(0xFFFAF3FC)
+val back = Color(0xFFf1f1e1)

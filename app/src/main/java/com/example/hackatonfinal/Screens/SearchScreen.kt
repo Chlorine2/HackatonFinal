@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.unit.dp
 import com.example.hackatonfinal.R
 import com.example.hackatonfinal.viewModel.SharedViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 @Composable
@@ -57,3 +59,4 @@ fun SearchScreen(viewModel: SharedViewModel, onClick : () -> Unit){
 
 
 }
+
