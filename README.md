@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Tracking_volunteer_hours</title>
 </head>
 <body>
     <h1>Tracking_volunteer_hours</h1>
