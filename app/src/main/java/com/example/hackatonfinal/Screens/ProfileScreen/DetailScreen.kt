@@ -1,5 +1,6 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -31,33 +33,20 @@ import com.example.hackatonfinal.Screens.ProfileScreen.AwardsScreen
 import com.example.hackatonfinal.Screens.ProfileScreen.CompaniesItemCard
 import com.example.hackatonfinal.graphs.ListOfScreens
 
-
 @Composable
-fun DetailsScreen(awards: Awards) {
-    Column {
-        Image(
-            painter = painterResource(awards.photoResId),
-            contentDescription = null,
-            modifier = Modifier.fillMaxWidth(),
-            contentScale = ContentScale.Crop
-        )
-        Spacer(modifier = Modifier.height(16.dp))
+fun DetailScreen() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
         Text(
-            text = awards.title,
-            style = MaterialTheme.typography.headlineMedium,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = awards.location,
+            text = "We send a letter with more information to your email",
             style = MaterialTheme.typography.bodyMedium,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = awards.description,
-            style = MaterialTheme.typography.bodyMedium,
+            textAlign = TextAlign.Center
         )
     }
 }
+
 
 
 

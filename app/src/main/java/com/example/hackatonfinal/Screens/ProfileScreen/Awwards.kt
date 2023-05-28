@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,11 +25,14 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.hackatonfinal.R
 import com.example.hackatonfinal.graphs.ListOfScreens
+import com.example.hackatonfinal.ui.theme.background
+import com.example.hackatonfinal.ui.theme.blue
 
 data class Awards(
     val photoResId: Int,
@@ -47,7 +52,9 @@ fun AwardsItemCard(navController: NavController, awards: Companies) {
             .shadow(18.dp),
         color = Color.LightGray,
     ) {
-        Column(modifier = Modifier.padding(16.dp).clickable{navController.navigate(ListOfScreens.Detail.name)}
+        Column(
+            modifier = Modifier.padding(16.dp)
+                .clickable { navController.navigate(ListOfScreens.AwardsSoftServe.name) }
         ) {
             Image(
                 painter = painterResource(awards.photoResId),
@@ -72,20 +79,42 @@ fun AwardsItemCard(navController: NavController, awards: Companies) {
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.Black
                     )
+                    Button(
+                        onClick = {
+                            navController.navigate(ListOfScreens.Detail.name) {
+                                launchSingleTop = true
+                            }
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            blue,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text(text = "Buy")
+                    }
+
                 }
                 Column(modifier = Modifier.padding(start = 16.dp)) {
+                    Text(
+                        text = awards.price,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Black,
+                        modifier = Modifier.align(Alignment.End),
+                        fontWeight = FontWeight.Bold
+                    )
                     Text(
                         text = awards.location,
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.Black,
                         modifier = Modifier.align(Alignment.End)
                     )
+
                 }
 
-                Modifier.clickable {
-                    navController.navigate(ListOfScreens.Awards.name)
-                }
             }
+        }
+        Modifier.clickable {
+            navController.navigate(ListOfScreens.AwardsSoftServe.name)
         }
     }
 }
@@ -93,20 +122,9 @@ fun AwardsItemCard(navController: NavController, awards: Companies) {
 fun AwardsScreen(navController: NavController) {
     val companies = listOf(
         Companies(
-            photoResId = R.drawable.img_7,
-            title = "Travel to Truskavets",
-            location = "",
-            description = ""
-        ),
-        Companies(
-            photoResId = R.drawable.img_8,
-            title = "Concert of Ivo Bobula",
-            location = "Lviv",
-            description = ""
-        ),
-        Companies(
-            photoResId = R.drawable.img_9,
-            title = "Bottle of bear",
+            photoResId = R.drawable.img_10,
+            title = "Rent office",
+            price = "150 points",
             location = "",
             description = ""
         )

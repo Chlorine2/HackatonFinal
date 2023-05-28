@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -24,24 +26,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.example.hackatonfinal.R
 import com.example.hackatonfinal.graphs.ListOfScreens
+import com.example.hackatonfinal.ui.theme.blue
 
-data class Companies(
+data class Hui1(
     val photoResId: Int,
     val title: String,
-    val price: String,
     val location: String,
     val description: String
 )
-
-
 @Composable
-fun CompaniesItemCard(navController: NavController, companies: Companies) {
+fun AwardsItemCard1(navController: NavController, awards: Companies) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,11 +48,11 @@ fun CompaniesItemCard(navController: NavController, companies: Companies) {
             .shadow(18.dp),
         color = Color.LightGray,
     ) {
-        Column(modifier = Modifier
-            .padding(16.dp)
-            .clickable { navController.navigate(ListOfScreens.AwardsSoftServe.name) }) {
+        Column(modifier = Modifier.padding(16.dp).clickable {
+            navController.navigate(ListOfScreens.AwardsTrans.name)
+        }) {
             Image(
-                painter = painterResource(companies.photoResId),
+                painter = painterResource(awards.photoResId),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -66,65 +64,67 @@ fun CompaniesItemCard(navController: NavController, companies: Companies) {
             Row {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = companies.title,
+                        text = awards.title,
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = companies.description,
+                        text = awards.description,
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.Black
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
-
+                    Button(
+                        onClick = {
+                            navController.navigate(ListOfScreens.Detail.name) {
+                                launchSingleTop = true
+                            }
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            blue,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text(text = "Buy")
+                    }
                 }
                 Column(modifier = Modifier.padding(start = 16.dp)) {
                     Text(
-                        text = companies.location,
+                        text = awards.price,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Black,
+                        modifier = Modifier.align(Alignment.End),
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = awards.location,
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.Black,
                         modifier = Modifier.align(Alignment.End)
                     )
-                    Text(
-                        text = companies.price,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold
-                    )
                 }
-
-               //Modifier.clickable {
-               //    navController.navigate(ListOfScreens.Awards.name)
-               //}
             }
         }
     }
 }
+
+
 @Composable
-fun CompaniesScreen(navController: NavHostController) {
-    val companies = listOf(
+fun AwardElectro(navController: NavController) {
+    val companies1 = listOf(
         Companies(
-            photoResId = R.drawable.img_1,
-            title = "SoftServe",
-            price = "",
-            location = "Lviv",
-            description = ""
-        ),
-        Companies(
-            photoResId = R.drawable.img_11,
-            title = "Lviv Electro Trans",
-            price = "",
+            photoResId = R.drawable.img_12,
+            title = "One day Pass",
+            price = "100 points",
             location = "",
             description = ""
         ),
         Companies(
-            photoResId = R.drawable.img_4,
-            title = "Sombra",
-            price = "",
-            location = "Lviv",
-            description = ""
-        )
+            photoResId = R.drawable.img_12,
+            title = "One day Pass",
+            price = "100 points",
+            location = "",
+            description = "")
     )
 
     val scrollState = rememberScrollState()
@@ -133,10 +133,8 @@ fun CompaniesScreen(navController: NavHostController) {
             .fillMaxSize()
             .verticalScroll(scrollState)
     ) {
-            companies.forEach { company ->
-                CompaniesItemCard(navController, company)
-            }
+        companies1.forEach { awards1 ->
+        AwardsItemCard1(navController, awards1)
     }
-
+    }
 }
-

@@ -1,6 +1,6 @@
 package com.example.hackatonfinal.graphs
 
-import DetailsScreen
+import DetailScreen
 import android.os.Build
 import android.telecom.Call.Details
 import androidx.annotation.RequiresApi
@@ -14,8 +14,11 @@ import com.example.hackatonfinal.R
 import com.example.hackatonfinal.Screens.Event
 import com.example.hackatonfinal.Screens.EventItemCard
 import com.example.hackatonfinal.Screens.NotificationScreen
+import com.example.hackatonfinal.Screens.ProfileScreen.AwardElectro
 import com.example.hackatonfinal.Screens.ProfileScreen.Awards
+import com.example.hackatonfinal.Screens.ProfileScreen.AwardsItemCard2
 import com.example.hackatonfinal.Screens.ProfileScreen.AwardsScreen
+import com.example.hackatonfinal.Screens.ProfileScreen.AwardsScreen2
 import com.example.hackatonfinal.Screens.ProfileScreen.CompaniesScreen
 import com.example.hackatonfinal.Screens.ProfileScreen.HistoryCard
 import com.example.hackatonfinal.Screens.ProfileScreen.MyScreen
@@ -53,7 +56,7 @@ fun HomeNavGraph(navController: NavHostController, viewModel: SharedViewModel) {
             CompaniesScreen(navController)
         }
 
-        composable(ListOfScreens.Awards.name){
+        composable(ListOfScreens.AwardsSoftServe.name){
             AwardsScreen(navController)
         }
         composable(ListOfScreens.DetailProject.name){
@@ -64,7 +67,15 @@ fun HomeNavGraph(navController: NavHostController, viewModel: SharedViewModel) {
         }
 
         composable(ListOfScreens.Detail.name){
-            //DetailsScreen()
+            DetailScreen()
+        }
+
+        composable(ListOfScreens.AwardsTrans.name){
+            AwardElectro(navController)
+        }
+
+        composable(ListOfScreens.AwardsConcerts.name){
+            AwardsScreen2(navController)
         }
 
 
